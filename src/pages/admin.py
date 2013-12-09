@@ -2,6 +2,10 @@ from django.contrib import admin
 
 from pages.models import Page
 
-admin.site.register(Page)
+class PageAdmin(admin.ModelAdmin):
+	list_display = ('word','definition','pub_date')
+	list_filter = ['pub_date']
+	search_fields = ['word']
 
-# Register your models here.
+
+admin.site.register(Page, PageAdmin)
