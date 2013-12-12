@@ -1,0 +1,7 @@
+<h1>{{ page.word }}</h1>
+
+<div>{{ page.definition |linebreaks|urlize }}</div>
+<br>
+<div>Published at: {{ page.pub_date }}</div>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
