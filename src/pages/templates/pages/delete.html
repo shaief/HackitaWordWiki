@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+WikiWords article -
+{{ page.word }}
+
+{% endblock %}
+
+
+{% block content %}
+<ul class="nav nav-tabs">
+  <li><a href="/pages/">Home</a></li>
+  <li><a href="../../{{ page.id }}">{{ page.word }}</a></li>
+  <li class="active"><a href="#">Edit</a></li>
+</ul>
+<form action="" method="post">{% csrf_token %}
+    <p>Are you sure you want to delete "{{ page.word }}"?</p>
+    <input type="submit" value="Confirm" />
+</form>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+{% endblock %}
