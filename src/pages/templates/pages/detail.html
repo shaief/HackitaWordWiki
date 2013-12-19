@@ -1,7 +1,36 @@
-<h1>{{ page.word }}</h1>
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+WikiWords article -
+{{ page.word }}
 
-<div>{{ page.definition |linebreaks|urlize }}</div>
+{% endblock %}
+
+
+{% block content %}
+<ul class="nav nav-tabs">
+  <li><a href="{% url 'pages:index' %}">Home</a></li>
+  <li class="active"><a href="{% url 'pages:detail' page.id %}">{{ page.word }}</a></li>
+  <li><a href="{% url 'pages:page_edit' page.id %}">Edit</a></li>
+  <li><a href="../about/">About</a></li>
+</ul>
+<h1>{{ page.word }}</h1>
+{% autoescape on %}
+<div>{{ page.definition |urlize |linebreaks  }}</div>
+{% endautoescape %}
 <br>
 <div>Published at: {{ page.pub_date }}</div>
-
+<br>
+<br>
+<br>
+ <div class="col-md-8">
+ 	<a class="btn btn-success" href="{% url 'pages:index' %}">
+	Back to main
+</a>
+ 	<a class="btn btn-success" href="{% url 'pages:detail' page.id %}delete/">
+	Delete word
+</a>
+</div>
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+{% endblock %}

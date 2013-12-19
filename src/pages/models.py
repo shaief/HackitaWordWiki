@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 class Page(models.Model):
@@ -9,4 +10,17 @@ class Page(models.Model):
         return self.word
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+    
+    def as_html(self):
+        for d in definition:
+            defintion += mark_safe(u"<a href='%s'>%s</a>" % escape(d),escape(d))
+        return self.definition
+    
+    def page_list(self):
+        return ", ".join([page.name for page in self.pages.all()])
+    page_list.short_description = "Pages"
+    
+    def get_absolute_url(self):
+        return reverse('pages:detail', args=(self.id,))
 
+        
