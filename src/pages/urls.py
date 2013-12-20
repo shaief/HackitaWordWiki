@@ -25,9 +25,9 @@ urlpatterns = patterns('',
         login_required(views.EditPageView.as_view()), name='page_edit'),
     
     # ex: /pages/NAME/
-    url(r'^(?P<page_word>[^/]+)$', views.words, name='words'),
+    url(r'^(?P<page_word>[^/]+)/$', views.words, name='words'),
     #url(r'^(?P<word_edit>[a-z]+)/edit/$', views.edit, name='word_edit'),
-    url(r'^(?P<word>[^/]+)/edit/$',
+    url(r'^(?P<page_word>[^/]+)/edit/$',
         login_required(views.EditPageView.as_view()), name='page_edit'),
     
     #ex: /pages/NAME/edit/

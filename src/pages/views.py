@@ -1,8 +1,8 @@
-from django.shortcuts import render, get_object_or_404
-from pages.models import Page
-from django.http import HttpResponse, Http404, HttpResponseRedirect
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
+from django.http import HttpResponse, Http404, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from pages.models import Page
 
 def home(request):
     return HttpResponse("You're looking at a page :) {% url 'index' %}")
@@ -42,6 +42,7 @@ class EditPageView(UpdateView):
 
 class PostPageView(CreateView):
     model = Page
+#     slug = Page.objects.get(word=page_word)
     fields = ['word','definition','pub_date']
     template_name = 'pages/newpage.html'
     

@@ -13,8 +13,8 @@ class Page(models.Model):
     
     def as_html(self):
         for d in definition:
-            defintion += mark_safe(u"<a href='%s'>%s</a>" % escape(d),escape(d))
-        return self.definition
+            defintion += mark_safe("<a href='{}'>{}</a>".format(escape(d),escape(d)))
+        return mark_safe(definition)
     
     def page_list(self):
         return ", ".join([page.name for page in self.pages.all()])

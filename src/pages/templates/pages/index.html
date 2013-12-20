@@ -10,26 +10,17 @@ WikiWords
 
 {% block content %}
 <ul class="nav nav-tabs">
-  <li class="active"><a href="/index/">Home</a></li>
+  <li class="active"><a href="{% url 'pages:index' %}">Home</a></li>
   <li><a href="./about/">About</a></li>
 </ul>
 
 {% if latest_page_list %}
     <ul>
     {% for page in latest_page_list %}
-        <!-- <li><a href="{% url 'pages:detail' page.id %}">{{ page.word }}</a></li> -->
         <li><a href="{% url 'pages:words' page.word %}">{{ page.word }}</a></li>
     {% endfor %}
     </ul>
-      <!-- <ul class="list-group">
-          {% for p in page %}
-            <li class="list-group-item">
-                <a href="{{p.get_absolute_url}}">
-                  {{p}}
-                </a>
-            </li>
-          {% endfor %}
-      </ul> -->
+
 {% else %}
     <p>No pages are available.</p>
 {% endif %}
